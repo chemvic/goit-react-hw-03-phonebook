@@ -13,7 +13,7 @@ class App extends Component {
   ],
   filter: '',
   }
- componentDidUpdate(prevProps, prevState) { first} 
+//  componentDidUpdate(prevProps, prevState) { first} 
 
   formSubmitHandler=(newContact)=>{
     const{contacts}=this.state;
