@@ -13,7 +13,20 @@ class App extends Component {
   ],
   filter: '',
   }
-//  componentDidUpdate(prevProps, prevState) { first} 
+
+  componentDidMount() { 
+    const savedContacts=JSON.parse(localStorage.getItem("Contacts"));    
+    if(savedContacts){
+      this.setState({contacts:savedContacts});
+    }
+   }
+
+ componentDidUpdate(_, prevState) {
+  const{contacts}=this.state;
+ if(contacts!==prevState.contacts){
+  localStorage.setItem("Contacts",JSON.stringify(contacts));
+ }
+ } 
 
   formSubmitHandler=(newContact)=>{
     const{contacts}=this.state;
@@ -47,6 +60,7 @@ this.setState((state)=>({
 
 	
   render(){    
+    
     const filteredContacts=this.getFilteredContacts();
     const{filter}=this.state;
 
