@@ -7,12 +7,12 @@ const Filter =({value, onQuery})=>{
         
     return(
         <label className={css.filter_lable}>
-            <span>Find contacts by name</span>
+            <span>Find contacts by name or number</span>
         <input className={css.filter_input}
         type="text" 
         value={value}
         onChange={onQuery}
-        placeholder='Enter name for search ...'
+        placeholder='Enter name or number for search ...'
         pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
         title="Name may contain only letters,
          apostrophe, dash and spaces.

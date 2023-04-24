@@ -31,7 +31,7 @@ class App extends Component {
   formSubmitHandler=(newContact)=>{
     const{contacts}=this.state;
     if(contacts
-			.find(({name}) => name.toLowerCase()===(newContact.name.toLowerCase()))){
+			.find(({name, number}) => name.toLowerCase()===(newContact.name.toLowerCase())||number===newContact.number)){
         alert(`${newContact.name} is already in contacts.`);
         return;
       }   
@@ -51,10 +51,10 @@ this.setState((state)=>({
       };
    
 
-  getFilteredContacts = ()=>{
+  getFilteredContacts = () =>{
     const{contacts, filter}=this.state;
     return contacts
-			.filter(({name}) => name.toLowerCase().includes(filter.toLowerCase()));      
+			.filter(({name, number}) => name.toLowerCase().includes(filter.toLowerCase())||number.includes(filter));      
   }
 
 
@@ -79,7 +79,8 @@ this.setState((state)=>({
        
       <Filter value={filter} onQuery={this.changeFilter} />
 
-      <ContactList contacts={filteredContacts} onDelete={this.onDeleteContact}/>       
+      {filteredContacts.length>0 ? <ContactList contacts={filteredContacts} onDelete={this.onDeleteContact}/> 
+      :<p>There is no contacts by query</p>}    
 
     </div>
   );
